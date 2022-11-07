@@ -7,12 +7,23 @@ window.addEventListener("load", function() {
 	video.loop = false;
 	console.log("Auto play is set to " + video.autoplay)
 	console.log("Loop is set to " + video.autoplay)
+	
 });
 
 document.querySelector("#play").addEventListener("click", function() {
 	console.log("Play Video");
 	video.play()
-	document.getElementById("volume").innerHTML = 100 + "%";
+	//video.defaultVolume = 1
+
+	if (video.volume != 1){
+		//video.volume = this.value
+		//document.getElementById("volume").innerHTML = this.value + "%";
+		
+	}
+	else{
+		video.volume = 1
+		document.getElementById("volume").innerHTML = 100 + "%";
+	}
 });
 
 document.querySelector("#pause").addEventListener("click", function() {
@@ -49,15 +60,17 @@ document.querySelector("#skip").addEventListener("click", function() {
 document.querySelector("#mute").addEventListener("click", function() {
 	
 
-	if (video.volume != 0){
+	if (!video.muted){
 		document.getElementById("mute").innerHTML = "Unmute";
-		video.volume =0
+		//video.volume =0
+		video.muted= true
 		console.log("Mute video");
 	}
 
 	else {
 		document.getElementById("mute").innerHTML = "Mute";
-		video.volume = 1
+		//video.volume = 1
+		video.muted= false
 		console.log("Unmute video");
 	}
 
